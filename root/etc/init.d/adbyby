@@ -42,8 +42,8 @@ add_rules() {
 
 add_cron() {
 	if [ $cron_mode -eq 1 ]; then
-    sed -i '/adblock.sh/d' $CRON_FILE
-		echo '0 0 * * * /usr/share/adbyby/adblock.sh > /tmp/adupdate.log 2>&1' >> $CRON_FILE
+    	sed -i '/adblock.sh/d' $CRON_FILE
+		echo "0 $(uci_get_by_type adbyby auto_update) * * * /usr/share/adbyby/adblock.sh > /tmp/adupdate.log 2>&1" >> $CRON_FILE
 		crontab $CRON_FILE
 	fi
 }
@@ -173,7 +173,7 @@ start() {
 	config_load adbyby
 	config_foreach get_config adbyby
 	
-	if [ $enable -ne 0 ];  then
+	if [ $enable -ne 0 ]; then
     	add_cron
     	[ ! -d "/tmp/adbyby/data" ]  && cp -a /usr/share/adbyby /tmp/ && rm -f /tmp/adbyby.updated
     	add_rules

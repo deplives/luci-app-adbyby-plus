@@ -22,6 +22,13 @@ o.title = translate("Update Rules")
 o.default = 0
 o.rmempty = false
 
+o = s:option(ListValue, "auto_update", translate("Update time (every day)"))
+for t = 0, 23 do
+	o:value(t, t .. ":00")
+end
+o.default = 0
+o.rmempty = false
+
 o = s:option(DummyValue, "ad_data", translate("Rules Datebase"))
 o.rawhtml  = true
 o.template = "adbyby/refresh"

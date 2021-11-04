@@ -70,6 +70,9 @@ msgstr "拦截 短视频"
 msgid "Update Rules"
 msgstr "自动更新规则"
 
+msgid "Update time (every day)"
+msgstr "更新时间 (每天)"
+
 msgid "Rules Datebase"
 msgstr "规则数据库"
 
