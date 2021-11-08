@@ -30,6 +30,9 @@ end
 o.default = "0 0 * * *"
 o.rmempty = false
 
+o = s:option(DynamicList, "subscribe_url", translate("Subscribe Rules URL"))
+o.rmempty = true
+
 o = s:option(DummyValue, "ad_data", translate("Rules Datebase"))
 o.rawhtml  = true
 o.template = "adbyby/refresh"
@@ -47,8 +50,5 @@ o.write = function()
   SYS.exec("/etc/init.d/adbyby restart 2>&1 &")
   luci.http.redirect(luci.dispatcher.build_url("admin", "services", "adbyby", "advanced"))
 end
-
-o = s:option(DynamicList, "subscribe_url", translate("Subscribe Rules URL"))
-o.rmempty = true
 
 return m
