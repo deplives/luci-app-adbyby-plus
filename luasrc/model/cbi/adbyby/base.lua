@@ -1,5 +1,5 @@
 local NXFS = require "nixio.fs"
-local SYS  = require "luci.sys"
+local SYS = require "luci.sys"
 local HTTP = require "luci.http"
 local DISP = require "luci.dispatcher"
 
@@ -28,12 +28,12 @@ o.rmempty = false
 o = s:option(Button, "restart")
 o.title = translate("Rule State")
 o.inputtitle = translate("Update Manually")
-o.description = string.format("<strong>"..translate("Last Update")..":</strong> %s", UD)
+o.description = string.format("<strong>" .. translate("Last Update") .. ":</strong> %s", UD)
 o.inputstyle = "reload"
 o.write = function()
-	SYS.call("rm -rf /tmp/adbyby.updated /tmp/adbyby/admd5.json && /usr/share/adbyby/adbybyupdate.sh > /tmp/adupdate.log 2>&1 &")
+    SYS.call("rm -rf /tmp/adbyby.updated /tmp/adbyby/admd5.json && /usr/share/adbyby/adbybyupdate.sh > /tmp/adupdate.log 2>&1 &")
     SYS.call("sleep 2")
-	HTTP.redirect(DISP.build_url("admin", "services", "adbyby"))
+    HTTP.redirect(DISP.build_url("admin", "services", "adbyby"))
 end
 
 t = m:section(TypedSection, "acl_rule", translate("<strong>Client Filter Mode Settings</strong>"), translate("Set different filter mode for LAN clients"))
@@ -46,10 +46,12 @@ e = t:option(Value, "ipaddr", translate("IP Address"))
 e.width = "50%"
 e.datatype = "ip4addr"
 e.placeholder = "0.0.0.0/0"
-luci.ip.neighbors({ family = 4 }, function(entry)
-	if entry.reachable then
-		e:value(entry.dest:string())
-	end
+luci.ip.neighbors({
+    family = 4
+}, function(entry)
+    if entry.reachable then
+        e:value(entry.dest:string())
+    end
 end)
 
 e = t:option(ListValue, "filter_mode", translate("Running Mode"))
