@@ -22,11 +22,12 @@ o.title = translate("Update Rules")
 o.default = 0
 o.rmempty = false
 
-o = s:option(ListValue, "auto_update", translate("Update time (every day)"))
+o = s:option(Value, "auto_update", translate("Update time (every day)"))
+o.description = translate("Linux crontab schedule expressions")
 for t = 0, 23 do
-	o:value(t, t .. ":00")
+  o:value("0 " .. t .. " * * *", t .. ":00")
 end
-o.default = 0
+o.default = "0 0 * * *"
 o.rmempty = false
 
 o = s:option(DummyValue, "ad_data", translate("Rules Datebase"))

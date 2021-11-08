@@ -73,6 +73,9 @@ msgstr "自动更新规则"
 msgid "Update time (every day)"
 msgstr "更新时间 (每天)"
 
+msgid "Linux crontab schedule expressions"
+msgstr "Linux 格式 crontab 表达式"
+
 msgid "Rules Datebase"
 msgstr "规则数据库"
 
