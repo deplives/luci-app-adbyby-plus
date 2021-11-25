@@ -77,7 +77,7 @@ msgid "Linux crontab schedule expressions"
 msgstr "Linux 格式 crontab 表达式"
 
 msgid "Rules Datebase"
-msgstr "规则数据库"
+msgstr "基础规则"
 
 msgid "Records"
 msgstr "条记录"
